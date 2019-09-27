@@ -1,0 +1,86 @@
+QUE ES WORKING THREE?
+
+Git tiene tres estados principales en los que se pueden encontrar tus archivos: 
+Confirmado (committed): Confirmado significa que los datos están almacenados de manera segura en tu base de 
+datos local.
+Modificado (modified):  Modificado significa que has modificado el archivo pero todavía no lo 
+has confirmado a tu base de datos. 
+modificado en su versión actual para que vaya en tu próxima confirmación.
+Preparado (staged):  Preparado significa que has marcado un archivo
+
+QUE ES STAPING?
+
+	-son puntos de enganche.
+Los primeros cuatro puntos de enganche están relacionados con el proceso de confirmación 
+de cambios.
+
+ 	-Primero se activa el punto de enganche 'pre-commit', incluso antes de que teclees 
+ 	 el mensaje de confirmación. 
+
+Se suele utilizar para inspeccionar la instantánea (snapshot) que vas a confirmar, 
+para ver si has olvidado algo, para asegurar que las pruebas se ejecutan, o para revisar 
+cualquier aspecto que necesites inspeccionar en el codigo. Saliendo con un valor de 
+retorno distinto de cero, se aborta la confirmación de cambios. Aunque siempre puedes 
+saltartelo con la orden 'git commit --no-verify'. Puede ser util para realizar tareas 
+tales como revisar el estilo del código (lanzando 'lint' o algo equivalente), revisar 
+los espacios en blanco de relleno (el script de ejemplo hace exactamente eso), o revisar 
+si todos los nuevos métodos llevan la adecuada documentación.
+	
+	-El punto de enganche 'prepare-commit-msg' se activa antes de arrancar el editor del 
+	mensaje de confirmación de cambios, pero después de crearse el mensaje por defecto. 
+Te permite editar el mensaje por defecto, antes de que lo vea el autor de la confirmación 
+de cambios. 
+
+Este punto de enganche recibe varias entradas:
+
+	- la ubicación (path) del archivo temporal donde se almacena el mensaje de confirmación,
+	  el tipo de confirmación y la clave SHA-1 si estamos enmendando un commit existente. 
+	  Este punto de enganche no tiene mucha utilidad para las confirmaciones de cambios normales; 
+	  pero sí para las confirmaciones donde el mensaje por defecto es autogenerado,
+	  como en las confirmaciones de fusiones (merge), los mensajes con plantilla,
+	  las confirmaciones aplastadas (squash), o las confirmaciones de correccion (amend). 
+	  Se puede utilizar combinandolo con una plantilla de confirmación, para poder insertar información 
+	  automáticamente.
+
+	 -El punto de enganche 'commit-msg' recibe un parámetro: la ubicación (path) del 
+	 archivo temporal que contiene el mensaje de confirmación actual. 
+
+Si este script termina con un código de salida distinto de cero, Git aborta el proceso de confirmación
+de cambios; permitiendo así validar el estado del proyecto o el mensaje de confirmación
+antes de permitir continuar. 
+
+Despues de completar todo el proceso de confirmación de cambios,
+es cuando se lanza el punto de enganche 'post-commit'. 
+
+QUE ES HEAD STAPING?
+
+	-HEAD es una referencia a la última confirmación en la rama de salida actual.
+
+se puede pensar en HEAD como la "rama actual". Cuando cambia de sucursal con git checkout, 
+la revisión HEAD cambia para apuntar a la punta de la nueva sucursal.
+Puede ver lo que HEAD señala haciendo: cat .git / HEAD.
+
+QUE ES HEAD DE GIT?
+
+	-Se usa para deshacer cambios locales en el estado de un repositorio de Git.
+
+ El restablecimiento de Git funciona en "Los tres árboles de Git".
+ Estos árboles son los siguientes:
+	 
+	-El historial de confirmaciones (HEAD), 
+	-El Índice de etapas 
+	-El Directorio de trabajo. 
+
+ Las opciones --soft, --mixed y --hard se pueden pasar a git reset.
+
+QUE ES UN BRANCH?
+
+	-Es la ramificacion de directorio para poder almacenar todo y luego poder subir a la nube.
+
+QUE ES UN BRANCH MODELING? 
+
+	-Branch in Git es simplemente un puntero móvil ligero para uno de estos commits.
+ 	-El nombre de rama predeterminado en Git es master. 
+
+Cuando comience a realizar confirmaciones, recibirá una rama maestra que señala la última confirmación que realizó. 
+Cada vez que confirma, el puntero de la rama maestra y avanza automáticamente.
