@@ -1,0 +1,2 @@
+-pase la clase de c#
+-realize la practica de c#
